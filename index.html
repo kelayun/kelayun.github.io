@@ -1,1 +1,102 @@
-
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="mhy">
+  <meta name="keywords" content="template, html5, css3, bootstrap4">
+  <meta name="description" content="克拉云机场发布页">
+  
+  <!-- 设置 no-cache 确保每次获取最新页面 -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <title>克拉云机场发布页</title>
+  
+  <!-- 引入 Bootstrap CSS 样式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+  
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+    .bg {
+      background-image: url('https://gd-hbimg.huaban.com/bb3a0c2718065b29ebe31e72387f87d6108955b620774f-a9aYWl');
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    .title {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333; /* 深色字体 */
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.2); /* 20% 透明白色背景 */
+      padding: 10px;
+      border-radius: 10px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .btn-container {
+      display: inline-block;
+    }
+    .btn {
+      margin: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+      display: inline-block;
+      font-size: 1.5rem; /* 增大字体大小 */
+      padding: 15px 30px; /* 增大内边距 */
+    }
+    .btn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .email-link {
+      font-weight: bold;
+      color: #ff69b4; /* 粉色 */
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .email-link:hover {
+      color: #ff1493; /* 更深的粉色 */
+      text-decoration: underline;
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg">
+    <div class="title">克拉云机场发布页</div>
+    <div class="subtitle">请收藏本地址永远不迷路</div><br>
+    <div class="subtitle">若无法访问请发送邮件/我会协助你<br>
+      <a href="mailto:kelayun@f5.si" class="email-link">📧 kelayun@f5.si</a>
+    </div>
+    <div class="btn-container">
+      <a href="https://www.mianhuayun101.buzz?t=1" class="btn btn-primary btn-lg">点我进入机场官网</a>
+    </div>
+  </div>
+</body>
+</html>
