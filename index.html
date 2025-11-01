@@ -39,11 +39,12 @@
       background-color: #000; /* 添加黑色背景以防视频加载失败 */
     }
     
-    /* 视频样式 - 修改为不放大，保持原始尺寸 */
+    /* 视频样式 - 自适应修改 */
     .video-bg video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* 改为contain以保持原始比例，不放大 */
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -63,19 +64,19 @@
       position: relative;
     }
     .title {
-      font-size: 2.5em;
+      font-size: 3.5em; /* 从2.5em加大到3.5em */
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 20px; /* 增加下边距 */
       color: #333; /* 深色字体 */
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
       background: rgba(255, 255, 255, 0.2); /* 20% 透明白色背景 */
-      padding: 10px;
-      border-radius: 10px;
+      padding: 20px; /* 增加内边距 */
+      border-radius: 15px; /* 增加圆角 */
       animation: fadeInDown 1s ease-in-out;
     }
     .subtitle {
-      font-size: 1.2em;
-      margin-bottom: 10px;
+      font-size: 1.8em; /* 从1.2em加大到1.8em */
+      margin-bottom: 20px; /* 增加下边距 */
       font-weight: bold; /* 加粗 */
       color: #ff69b4; /* 粉色 */
     }
@@ -83,11 +84,11 @@
       display: inline-block;
     }
     .btn {
-      margin: 5px;
+      margin: 10px; /* 增加外边距 */
       transition: background-color 0.3s, transform 0.3s;
       display: inline-block;
-      font-size: 1.5rem; /* 增大字体大小 */
-      padding: 15px 30px; /* 增大内边距 */
+      font-size: 2rem; /* 从1.5rem加大到2rem */
+      padding: 20px 40px; /* 从15px 30px加大到20px 40px */
     }
     .btn:hover {
       background-color: #0056b3;
@@ -113,13 +114,45 @@
         transform: translateY(0);
       }
     }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2.5em; /* 从1.8em加大到2.5em */
+        padding: 15px; /* 增加内边距 */
+      }
+      .subtitle {
+        font-size: 1.4em; /* 从1em加大到1.4em */
+      }
+      .btn {
+        font-size: 1.6rem; /* 从1.2rem加大到1.6rem */
+        padding: 16px 32px; /* 从12px 24px加大到16px 32px */
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .title {
+        font-size: 2em; /* 从1.5em加大到2em */
+        padding: 12px; /* 增加内边距 */
+      }
+      .subtitle {
+        font-size: 1.2em; /* 从0.9em加大到1.2em */
+      }
+      .btn {
+        font-size: 1.3rem; /* 从1rem加大到1.3rem */
+        padding: 14px 28px; /* 从10px 20px加大到14px 28px */
+      }
+    }
   </style>
 </head>
 <body>
   <!-- 视频背景 -->
   <div class="video-bg">
     <video id="backgroundVideo" autoplay muted loop playsinline>
-      <source src="https://k0u6fy1dy17yc5zw2409x8c5ex5000x740xx5z.djvod.ndcimgs.com/upic/2025/11/01/16/BMjAyNTExMDExNjI3MTdfNDI0MDI5NTBfMTc4NzkyMTU2NzE5XzFfMw==_b_Bf6245798cdd1d02dfebdcbbd8d8d6e3c.mp4">
+      <source src="https://v3-default.365yg.com/e74a41fc26c45ff2764c9de688bc3a91/69062573/video/tos/cn/tos-cn-ve-15/oQEGICkfzwwQxaA9btQnqgF9O7eDtagAAQi4yB/?a=2011&ch=0&cr=0&dr=0&er=0&lr=unwatermarked&net=5&cd=0%7C0%7C0%7C0&cv=1&br=1865&bt=1865&cs=0&ds=4&ft=aT_7TQQqUuIf_oZmo0OW_QYaUqiX5iPvkVJEiK4rKbPD-Ipz&mime_type=video_mp4" type="video/mp4">
+      <!-- 可以添加更多视频格式源，支持各种视频格式 -->
+      <!-- <source src="your-video-link.webm" type="video/webm"> -->
+      <!-- <source src="your-video-link.ogg" type="video/ogg"> -->
     </video>
   </div>
   
