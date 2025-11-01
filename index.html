@@ -50,17 +50,6 @@
       transform: translate(-50%, -50%);
     }
     
-    /* 添加加载指示器 */
-    .loading-indicator {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 1.2em;
-      z-index: 10;
-    }
-    
     .bg {
       height: 100%;
       background-position: center;
@@ -129,11 +118,8 @@
 <body>
   <!-- 视频背景 -->
   <div class="video-bg">
-    <div class="loading-indicator">视频加载中...</div>
-    <video id="backgroundVideo" autoplay muted loop playsinline preload="auto">
-      <source src="https://k0u6fy1dy17yc5zw2409x8c5ex5000x740xx5z.djvod.ndcimgs.com/upic/2025/11/01/16/BMjAyNTExMDExNjI3MTdfNDI0MDI5NTBfMTc4NzkyMTU2NzE5XzFfMw==_b_Bf6245798cdd1d02dfebdcbbd8d8d6e3c.mp4" type="video/mp4">
-      <!-- 添加备用视频源 -->
-      <source src="https://k0u6fy1dy17yc5zw2409x8c5ex5000x740xx5z.djvod.ndcimgs.com/upic/2025/11/01/16/BMjAyNTExMDExNjI3MTdfNDI0MDI5NTBfMTc4NzkyMTU2NzE5XzFfMw==_b_Bf6245798cdd1d02dfebdcbbd8d8d6e3c.mp4" type="video/mp4">
+    <video id="backgroundVideo" autoplay muted loop playsinline>
+      <source src="https://v3-default.365yg.com/ab98c9f8509ffc5fbce96decc62488e0/69061431/video/tos/cn/tos-cn-ve-15/oMr19i9AiEwIglAQZBfe5EFA9cRqpBCkAQXKBG/?a=2011&br=2366&bt=2366&btag=80000e00010000&cd=0%7C0%7C0%7C0&ch=0&cr=0&cs=0&cv=1&dr=0&ds=4&dy_q=1762002450&dy_va_biz_cert=&er=0&feature_id=0ea98fd3bdc3c6c14a3d0804cc272721&ft=k7Fz7VVywSyRKJ8kmo~pK7pswApGL62_vrKLO~ycdo0g3cI&l=2025110121073033D5D81AB25F47761592&lr=unwatermarked&mime_type=video_mp4">
     </video>
   </div>
   
@@ -150,10 +136,6 @@
     // 确保视频能够正常播放音频
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('backgroundVideo');
-      const loadingIndicator = document.querySelector('.loading-indicator');
-      
-      // 显示加载指示器
-      loadingIndicator.style.display = 'block';
       
       // 延迟取消静音，实现无痕自动播放
       function enableAudio() {
@@ -169,44 +151,11 @@
         console.error('视频加载失败，使用备用背景');
         document.body.style.backgroundImage = 'url(https://img.catvod.com)';
         document.querySelector('.video-bg').style.display = 'none';
-        loadingIndicator.style.display = 'none';
       });
       
       // 视频加载成功
       video.addEventListener('loadeddata', function() {
         console.log('视频加载成功');
-        loadingIndicator.style.display = 'none';
-      });
-      
-      // 视频卡住时重新加载
-      video.addEventListener('waiting', function() {
-        console.log('视频卡住，尝试重新加载');
-        loadingIndicator.style.display = 'block';
-        video.load();
-      });
-      
-      // 视频可以播放时隐藏加载指示器
-      video.addEventListener('canplay', function() {
-        console.log('视频可以播放');
-        loadingIndicator.style.display = 'none';
-      });
-      
-      // 添加播放失败时的重试机制
-      video.addEventListener('stalled', function() {
-        console.log('视频播放卡住，尝试重新加载');
-        loadingIndicator.style.display = 'block';
-        setTimeout(function() {
-          video.load();
-          video.play().catch(function(error) {
-            console.error('视频播放失败:', error);
-          });
-        }, 1000);
-      });
-      
-      // 确保视频播放
-      video.play().catch(function(error) {
-        console.error('自动播放失败:', error);
-        // 移除了创建播放按钮的代码，保持无痕预加载
       });
     });
   </script>
