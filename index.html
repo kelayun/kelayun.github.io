@@ -26,9 +26,7 @@
       text-shadow: 1px 1px 2px black;
       overflow: hidden;
     }
-    
-    /* 视频背景容器 */
-    .video-bg {
+    .video-container {
       position: fixed;
       top: 0;
       left: 0;
@@ -36,74 +34,90 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
-      background-color: #000; /* 添加黑色背景以防视频加载失败 */
     }
-    
-    /* 视频样式 - 自适应修改 */
-    .video-bg video {
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      object-fit: cover; /* 确保视频覆盖整个区域 */
-    }
-    
-    .bg {
+    .video-container video {
+      width: 100%;
       height: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .content {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       text-align: center;
       position: relative;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      max-width: 700px;
     }
     .title {
-      font-size: 3.5em; /* 从2.5em加大到3.5em */
+      font-size: 2.8em;
       font-weight: bold;
-      margin-bottom: 20px; /* 增加下边距 */
-      color: #333; /* 深色字体 */
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.2); /* 20% 透明白色背景 */
-      padding: 20px; /* 增加内边距 */
-      border-radius: 15px; /* 增加圆角 */
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px 45px;
+      border-radius: 15px;
       animation: fadeInDown 1s ease-in-out;
+      backdrop-filter: blur(10px);
+      width: 100%;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
     .subtitle {
-      font-size: 1.8em; /* 从1.2em加大到1.8em */
-      margin-bottom: 20px; /* 增加下边距 */
-      font-weight: bold; /* 加粗 */
-      color: #ff69b4; /* 粉色 */
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #ff1493;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+      padding: 15px 25px;
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
     }
     .btn-container {
-      display: inline-block;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
     }
     .btn {
-      margin: 10px; /* 增加外边距 */
-      transition: background-color 0.3s, transform 0.3s;
-      display: inline-block;
-      font-size: 2rem; /* 从1.5rem加大到2rem */
-      padding: 20px 40px; /* 从15px 30px加大到20px 40px */
+      transition: all 0.3s ease;
+      font-size: 1.8rem;
+      padding: 25px 45px;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 380px;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d6efd, #0a58ca);
+      border: none;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
     .btn:hover {
-      background-color: #0056b3;
-      transform: scale(1.05);
-    }
-    .email-link {
-      font-weight: bold;
-      color: #ff69b4; /* 粉色 */
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .email-link:hover {
-      color: #ff1493; /* 更深的粉色 */
-      text-decoration: underline;
+      background: linear-gradient(135deg, #0a58ca, #084298);
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     }
     @keyframes fadeInDown {
       from {
@@ -115,159 +129,135 @@
         transform: translateY(0);
       }
     }
-    
-    /* 备用背景图片样式 */
-    .fallback-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-      background-size: cover;
-      background-position: center;
-      display: none;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .pulse {
+      animation: pulse 2s infinite;
     }
     
     /* 响应式设计 */
     @media (max-width: 768px) {
+      .content-wrapper {
+        gap: 20px;
+        max-width: 90%;
+      }
       .title {
-        font-size: 2.5em; /* 从1.8em加大到2.5em */
-        padding: 15px; /* 增加内边距 */
+        font-size: 2.2em;
+        padding: 25px 35px;
+        min-height: 120px;
       }
       .subtitle {
-        font-size: 1.4em; /* 从1em加大到1.4em */
+        font-size: 1.5em;
+        padding: 12px 20px;
       }
       .btn {
-        font-size: 1.6rem; /* 从1.2rem加大到1.6rem */
-        padding: 16px 32px; /* 从12px 24px加大到16px 32px */
+        font-size: 1.5rem;
+        padding: 22px 40px;
+        min-height: 80px;
+        max-width: 90%;
       }
     }
     
     @media (max-width: 480px) {
+      .content-wrapper {
+        gap: 15px;
+      }
       .title {
-        font-size: 2em; /* 从1.5em加大到2em */
-        padding: 12px; /* 增加内边距 */
+        font-size: 1.8em;
+        padding: 20px 25px;
+        min-height: 100px;
       }
       .subtitle {
-        font-size: 1.2em; /* 从0.9em加大到1.2em */
+        font-size: 1.3em;
+        padding: 10px 15px;
       }
       .btn {
-        font-size: 1.3rem; /* 从1rem加大到1.3rem */
-        padding: 14px 28px; /* 从10px 20px加大到14px 28px */
+        font-size: 1.3rem;
+        padding: 18px 35px;
+        min-height: 70px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 备用背景图片 -->
-  <div class="fallback-bg" id="fallbackBg"></div>
-  
-  <!-- 视频背景 -->
-  <div class="video-bg">
-    <video id="backgroundVideo" autoplay muted loop playsinline>
-      <source src="https://v3-default.365yg.com/e74a41fc26c45ff2764c9de688bc3a91/69062573/video/tos/cn/tos-cn-ve-15/oQEGICkfzwwQxaA9btQnqgF9O7eDtagAAQi4yB/?a=2011&ch=0&cr=0&dr=0&er=0&lr=unwatermarked&net=5&cd=0%7C0%7C0%7C0&cv=1&br=1865&bt=1865&cs=0&ds=4&ft=aT_7TQQqUuIf_oZmo0OW_QYaUqiX5iPvkVJEiK4rKbPD-Ipz&mime_type=video_mp4" type="video/mp4">
-      <!-- 可以添加更多视频格式源，支持各种视频格式 -->
-      <!-- <source src="your-video-link.webm" type="video/webm"> -->
-      <!-- <source src="your-video-link.ogg" type="video/ogg"> -->
+  <!-- 背景视频容器 -->
+  <div class="video-container">
+    <video autoplay loop playsinline id="bgVideo" preload="auto">
+      <source src="https://k0u6fy1dy17yc5zw2409x8c5ex5000x740xx5z.djvod.ndcimgs.com/upic/2025/11/01/16/BMjAyNTExMDExNjI3MTdfNDI0MDI5NTBfMTc4NzkyMTU2NzE5XzFfMw==_b_Bf6245798cdd1d02dfebdcbbd8d8d6e3c.mp4" type="video/mp4">
+      您的浏览器不支持视频标签。
     </video>
   </div>
   
   <!-- 内容区域 -->
-  <div class="bg">
-    <div class="title">克拉云机场发布页</div>
-    <div class="subtitle">请收藏本地址永久不迷路</div><br>
-    <div class="btn-container">
-      <a href="https://tokly.kelacloud.site" class="btn btn-primary btn-lg">点我进入机场官网</a>
+  <div class="content">
+    <div class="content-wrapper">
+      <div class="title">克拉云机场发布页</div>
+      <div class="subtitle">请收藏本地址永久不迷路</div>
+      <div class="btn-container">
+        <a href="https://tokly.kelacloud.site" class="btn btn-primary btn-lg pulse">点我进入机场官网</a>
+      </div>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('backgroundVideo');
-      const fallbackBg = document.getElementById('fallbackBg');
+      const video = document.getElementById('bgVideo');
       
-      // 检查视频是否支持
-      function canPlayVideo() {
-        return video.canPlayType && video.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') !== "";
-      }
+      // 强制确保视频循环播放
+      video.loop = true;
       
-      // 检查视频是否加载成功
-      function checkVideoLoaded() {
-        return new Promise((resolve) => {
-          // 设置超时检查
-          const timeout = setTimeout(() => {
-            console.log('视频加载超时，使用备用背景');
-            resolve(false);
-          }, 5000);
-          
-          // 检查视频是否已加载数据
-          if (video.readyState >= 2) { // HAVE_CURRENT_DATA
-            clearTimeout(timeout);
-            resolve(true);
-            return;
-          }
-          
-          // 监听视频加载事件
-          video.addEventListener('loadeddata', () => {
-            clearTimeout(timeout);
-            resolve(true);
-          });
-          
-          // 监听视频错误事件
-          video.addEventListener('error', () => {
-            clearTimeout(timeout);
-            resolve(false);
-          });
-        });
-      }
-      
-      // 初始化视频背景
-      async function initVideoBackground() {
-        // 检查浏览器是否支持视频格式
-        if (!canPlayVideo()) {
-          console.log('浏览器不支持此视频格式，使用备用背景');
-          useFallbackBackground();
-          return;
-        }
+      // 初始播放视频（带声音）
+      const playVideo = () => {
+        // 确保视频不静音
+        video.muted = false;
+        video.volume = 0.7; // 设置音量（0.0 到 1.0）
         
-        // 尝试加载视频
-        try {
-          // 重新加载视频
-          video.load();
-          
-          // 检查视频是否加载成功
-          const videoLoaded = await checkVideoLoaded();
-          
-          if (!videoLoaded) {
-            console.log('视频加载失败，使用备用背景');
-            useFallbackBackground();
-            return;
-          }
-          
-          console.log('视频加载成功');
-          
-          // 延迟取消静音，实现无痕自动播放
-          setTimeout(() => {
-            video.muted = false;
-            console.log('音频已启用');
-          }, 1000);
-          
-        } catch (error) {
-          console.error('视频加载异常:', error);
-          useFallbackBackground();
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log('视频播放失败:', error);
+            // 如果自动播放失败，尝试用户交互后播放
+            document.body.addEventListener('click', function enableAudio() {
+              video.muted = false;
+              video.play();
+              document.body.removeEventListener('click', enableAudio);
+            }, { once: true });
+          });
         }
+      };
+      
+      // 等待页面完全加载后播放视频
+      if (document.readyState === 'complete') {
+        playVideo();
+      } else {
+        window.addEventListener('load', playVideo);
       }
       
-      // 使用备用背景
-      function useFallbackBackground() {
-        document.querySelector('.video-bg').style.display = 'none';
-        fallbackBg.style.display = 'block';
-      }
+      // 确保视频始终循环播放
+      video.addEventListener('ended', function() {
+        video.currentTime = 0;
+        video.play();
+      });
       
-      // 初始化视频背景
-      initVideoBackground();
+      // 定期检查视频状态，确保循环播放
+      setInterval(() => {
+        if (video.paused || video.ended) {
+          video.currentTime = 0;
+          video.play();
+        }
+      }, 1000);
+      
+      // 添加页面点击事件来触发音频播放（解决浏览器自动播放限制）
+      document.addEventListener('click', function() {
+        if (video.muted) {
+          video.muted = false;
+          video.volume = 0.7;
+        }
+      });
     });
   </script>
 </body>
