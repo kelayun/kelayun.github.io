@@ -93,7 +93,9 @@
     }
     .btn-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       width: 100%;
       max-width: 600px;
     }
@@ -109,15 +111,29 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #0d6efd, #0a58ca);
       border: none;
       font-weight: bold;
       letter-spacing: 1px;
+      text-decoration: none;
+      color: white;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #198754, #146c43);
     }
     .btn:hover {
-      background: linear-gradient(135deg, #0a58ca, #084298);
       transform: scale(1.05) translateY(-5px);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      color: white;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0a58ca, #084298);
+    }
+    .btn-success:hover {
+      background: linear-gradient(135deg, #146c43, #0f5132);
     }
     @keyframes fadeInDown {
       from {
@@ -197,7 +213,8 @@
       <div class="title">克拉云机场发布页</div>
       <div class="subtitle">请收藏本地址永久不迷路</div>
       <div class="btn-container">
-        <a href="https://rqpzi.klyzzz.top" class="btn btn-primary btn-lg pulse">点我进入机场官网</a>
+        <a href="https://skyppp.klyfunny.org" class="btn btn-primary pulse">点我进入机场官网</a>
+        <a href="https://rqpzi.klyzzz.top" class="btn btn-success pulse">备用入口</a>
       </div>
     </div>
   </div>
