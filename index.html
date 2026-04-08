@@ -3,279 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="mhy">
-  <meta name="keywords" content="template, html5, css3, bootstrap4">
-  <meta name="description" content="克拉云机场发布页">
-  
-  <!-- 设置 no-cache 确保每次获取最新页面 -->
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>克拉云机场发布页</title>
-  
-  <!-- 引入 Bootstrap CSS 样式 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-  
   <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-      overflow: hidden;
-    }
-    .video-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-    .video-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .content {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 20px;
+    * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .content-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 25px;
-      width: 100%;
-      max-width: 700px;
-    }
-    .title {
-      font-size: 2.8em;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      background: rgba(255, 255, 255, 0.2);
-      padding: 30px 45px;
-      border-radius: 15px;
-      animation: fadeInDown 1s ease-in-out;
-      backdrop-filter: blur(10px);
-      width: 100%;
-      min-height: 140px;
+
+    body {
+      font-family: -apple-system, system-ui, sans-serif;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      background: #f0f2f5;
+      color: #1d1d1f;
     }
-    .subtitle {
-      font-size: 1.8em;
-      font-weight: bold;
-      color: #ff1493;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-      padding: 15px 25px;
-      border-radius: 8px;
-      width: 100%;
+
+    .card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       text-align: center;
-    }
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 600px;
-    }
-    .btn {
-      transition: all 0.3s ease;
-      font-size: 1.8rem;
-      padding: 25px 45px;
-      border-radius: 50px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      width: 100%;
+      width: 90%;
       max-width: 380px;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-decoration: none;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: #ff2d55;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #007aff;
       color: white;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #0d6efd, #0a58ca);
-    }
-    .btn-success {
-      background: linear-gradient(135deg, #198754, #146c43);
-    }
-    .btn:hover {
-      transform: scale(1.05) translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-      color: white;
       text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
     }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #0a58ca, #084298);
+
+    .btn:active {
+      opacity: 0.8;
     }
-    .btn-success:hover {
-      background: linear-gradient(135deg, #146c43, #0f5132);
-    }
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .content-wrapper {
-        gap: 20px;
-        max-width: 90%;
-      }
-      .title {
-        font-size: 2.2em;
-        padding: 25px 35px;
-        min-height: 120px;
-      }
-      .subtitle {
-        font-size: 1.5em;
-        padding: 12px 20px;
-      }
-      .btn {
-        font-size: 1.5rem;
-        padding: 22px 40px;
-        min-height: 80px;
-        max-width: 90%;
-      }
-    }
-    
+
     @media (max-width: 480px) {
-      .content-wrapper {
-        gap: 15px;
-      }
-      .title {
-        font-size: 1.8em;
-        padding: 20px 25px;
-        min-height: 100px;
-      }
-      .subtitle {
-        font-size: 1.3em;
-        padding: 10px 15px;
-      }
-      .btn {
-        font-size: 1.3rem;
-        padding: 18px 35px;
-        min-height: 70px;
-      }
+      .card { padding: 2rem 1.5rem; }
+      .title { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
-  <!-- 背景视频容器 -->
-  <div class="video-container">
-    <video autoplay loop playsinline id="bgVideo" preload="auto">
-      <source src="https://k0u6fy1dy17yc5z.djvod.ndcimgs.com/bs2/photo-video-mz/5220516575075322682_2ac3cb91fc48ed02_1856_hd15.mp4" type="video/mp4">
-      您的浏览器不支持视频标签。
-    </video>
-  </div>
-  
-  <!-- 内容区域 -->
-  <div class="content">
-    <div class="content-wrapper">
-      <div class="title">克拉云机场发布页</div>
-      <div class="subtitle">请收藏本地址永久不迷路</div>
-      <div class="btn-container">
-        <a href="https://bbbboo.klyfunny.org" class="btn btn-primary pulse">点我进入机场官网</a>
 
-      </div>
-    </div>
+  <div class="card">
+    <div class="title">克拉云机场发布页</div>
+    <div class="subtitle">请收藏本地址永久不迷路</div>
+    <a href="https://bbbboo.klyfunny.org" class="btn">点我进入机场官网</a>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('bgVideo');
-      
-      // 强制确保视频循环播放
-      video.loop = true;
-      
-      // 初始播放视频（带声音）
-      const playVideo = () => {
-        // 确保视频不静音
-        video.muted = false;
-        video.volume = 0.7; // 设置音量（0.0 到 1.0）
-        
-        const playPromise = video.play();
-        
-        if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log('视频播放失败:', error);
-            // 如果自动播放失败，尝试用户交互后播放
-            document.body.addEventListener('click', function enableAudio() {
-              video.muted = false;
-              video.play();
-              document.body.removeEventListener('click', enableAudio);
-            }, { once: true });
-          });
-        }
-      };
-      
-      // 等待页面完全加载后播放视频
-      if (document.readyState === 'complete') {
-        playVideo();
-      } else {
-        window.addEventListener('load', playVideo);
-      }
-      
-      // 确保视频始终循环播放
-      video.addEventListener('ended', function() {
-        video.currentTime = 0;
-        video.play();
-      });
-      
-      // 定期检查视频状态，确保循环播放
-      setInterval(() => {
-        if (video.paused || video.ended) {
-          video.currentTime = 0;
-          video.play();
-        }
-      }, 1000);
-      
-      // 添加页面点击事件来触发音频播放（解决浏览器自动播放限制）
-      document.addEventListener('click', function() {
-        if (video.muted) {
-          video.muted = false;
-          video.volume = 0.7;
-        }
-      });
-    });
-  </script>
 </body>
 </html>
